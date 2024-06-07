@@ -185,9 +185,9 @@ There are also some useful scaling methods.
 
   For parameter $x_i$, we have 
   
-  $$
-  x_i := \frac{x_i - \mu_i}{max-min}
-  $$
+$$
+x_i := \frac{x_i - \mu_i}{max-min}
+$$
   
   $\mu_i$ is the mean value of $x$ , namely, $\mu_i = \bar{x}$. $max$ and $min$ are the max value and min value in $x$ . 
 
@@ -195,9 +195,9 @@ There are also some useful scaling methods.
 
   For parameter $x_i$, we have 
   
-  $$
-  x_i := \frac{x_i - \mu_i}{\sigma_1}
-  $$
+$$
+x_i := \frac{x_i - \mu_i}{\sigma_1}
+$$
   
   In this expression, $\mu_i$ has the same meaning in mean normalization, and $\sigma_1$ denotes the standard deviation of $x$ . So $\sigma_1^2$ is the variance of $x$ . 
 
