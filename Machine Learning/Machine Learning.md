@@ -146,7 +146,7 @@ $$
 
 In this expression, $\vec{w}$ is a row vector and $\vec{x}$ is a column vector. 
 
-### Gradient Descent for Multiple Regression
+#### Gradient Descent for Multiple Regression
 
 In Week 1, we have implemented the gradient descent algorithm. 
 
@@ -188,7 +188,7 @@ There are also some useful scaling methods.
 $$
 x_i := \frac{x_i - \mu_i}{max-min}
 $$
-  
+
   $\mu_i$ is the mean value of $x$ , namely, $\mu_i = \bar{x}$. $max$ and $min$ are the max value and min value in $x$ . 
 
 - Z-score normalization
@@ -198,7 +198,7 @@ $$
 $$
 x_i := \frac{x_i - \mu_i}{\sigma_1}
 $$
-  
+
   In this expression, $\mu_i$ has the same meaning in mean normalization, and $\sigma_1$ denotes the standard deviation of $x$ . So $\sigma_1^2$ is the variance of $x$ . 
 
 **Notice**
@@ -292,7 +292,7 @@ $$
 So the Cost function of logistic regression is
 
 $$
-J(\vec{w}, b) = \frac{1}{m}\sum_{i=1}^m{L\left(f_{w, b}(\vec{x}^{(i)}) - y^{(i)}\right)}
+    J(\vec{w}, b) = \frac{1}{m}\sum_{i=1}^m{L\left(f_{\vec{w}, b}(\vec{x}^{(i)}) - y^{(i)}\right)}
 $$
 
 
@@ -308,8 +308,8 @@ Therefore the simplified cost function is
 
 $$
 \begin{aligned}
-J(\vec{w}, b) &= \frac{1}{m}\sum_{i=1}^m{L\left(f_{w, b}(\vec{x}^{(i)}) - y^{(i)}\right)} \\
-&= \frac{1}{m}\sum_{i=1}^m{L\left(-y^{(i)}\log{\left(f_{w, b}(\vec{x}^{(i)})\right)} - (1-y^{(i)})\log(1-f_{w, b}(\vec{x}^{(i)})\right)} 
+J(\vec{w}, b) &= \frac{1}{m}\sum_{i=1}^m{L\left(f_{\vec{w}, b}(\vec{x}^{(i)}) - y^{(i)}\right)} \\
+&= \frac{1}{m}\sum_{i=1}^m{\left(-y^{(i)}\log{\left(f_{\vec{w}, b}(\vec{x}^{(i)})\right)} - (1-y^{(i)})\log(1-f_{\vec{w}, b}(\vec{x}^{(i)})\right)} 
 \end{aligned}
 $$
 
@@ -352,6 +352,53 @@ One way to address the problem is to **collect more training data**. If we are a
 But there isn't more data to be add usually. Hence, the second method to solve overfitting is to see if we can **use fewer features**. We can also discard some features that do not help us predict correctly, and manually select which feature to retain, or use some automatic algorithms to help us. 
 
 The third option for reducing overfitting is **regularization**. We may find that the parameters are often relatively large in a overfitting model. Regularization is a way to gently reduce the impacts of some of the features without eliminating them. What regularization does is **encouraging the learning algorithm to shrink the values of the parameters** without necessarily demanding that the parameters is set to exactly 0. By using regularization, we can end up with a curve that ends up fitting the training data much better. So what regularization does is it lets you keep all of your features, but they just prevents the features from having a overly large effect which is what sometimes can cause overfitting. By convention, we normally just reduce the size of the $w_j$ parameters, but not really encourage $b$ to become smaller. 
+
+### Regularization
+
+#### Cost Function with Regularization
+
+To reduce overfitting, we need to shrink the values of the parameters, especially the high power features. So the way regularization is typically implemented is to penalize all of the features of more precisely and preventing them from being too large. It's possible to show that this will usually result in fitting a smoother simpler, less weekly function that's less prone to overfitting. We introduce a new parameter $\lambda$ called **regularization parameter**, which is similar to the learning rate $\alpha$. And then we can get the cost function with regularization
+
+$$
+J(\vec{w}, b) = \frac{1}{2m}\sum_{i=1}^m\left(f_{\vec{w}, b}(x^{(i)}) - y^{(i)}\right)^2 + \frac{\lambda}{2m}\sum_{j=1}^n{w_j^2}
+$$
+
+If the regularization parameter we choose is enormous, all parameters will be minimized, leading to **under fitting**. And if the regularization parameter we choose is very small, then the penalty is also small, may still lead to **overfitting**. So for the regularization, we need to choose a reasonable $\lambda$ value, so that regularization can be better applied. 
+
+#### Regularized Linear Regression
+
+For the cost function with regularization, the term $\frac{\partial}{\partial{w_j}}J(\vec{w},b)$ is 
+
+$$
+\frac{\partial}{\partial{w_j}}J(\vec{w},b) = \frac{1}{m}\sum_{i=1}^m\left[{(f_{\vec{w}, b}(\vec{x}^{(i)}) - y^{(i)})}x_j^{(i)}\right]
+$$
+
+Then we can implement gradient descent for linear regression with following formula
+
+$$
+\begin{aligned}
+w_j &= w_j - \alpha\left[\frac{1}{m}\sum_{i=1}^m\left[{(f_{\vec{w}, b}(\vec{x}^{(i)}) - y^{(i)})}x_j^{(i)}\right]+\frac{\lambda}{m}w_j\right] \\
+b &= b - \alpha\frac{1}{m}\sum_{i=1}^m{(f_{\vec{w}, b}(\vec{x}^{(i)}) - y^{(i)}})
+\end{aligned}
+$$
+
+#### Regularized Logistic Regression
+
+Similar to the regularization of linear regression, the renewed cost function of logistic regression is
+
+$$
+J(\vec{w}, b) = -\frac{1}{m}\sum_{i=1}^m{\left(y^{(i)}\log{\left(f_{\vec{w}, b}(\vec{x}^{(i)})\right)} + (1-y^{(i)})\log(1-f_{\vec{w}, b}(\vec{x}^{(i)})\right)} + \frac{\lambda}{2m}\sum_{j=1}^n{w_j^2}
+$$
+
+ Then we can implement gradient descent for logistic regression with following formula
+
+$$
+\begin{aligned}
+w_j &= w_j - \alpha\left[\frac{1}{m}\sum_{i=1}^{m}{f_{\vec{w}, b}(\vec{x}^{(i)} - y^{(i)})}x_j^{(i)} + \frac{\lambda}{m}w_j\right] \\
+b &= b - \alpha\left[\frac{1}{m}\sum_{i=1}^{m}{f_{\vec{w}, b}(\vec{x}^{(i)} - y^{(i)})}\right] \\
+\end{aligned}
+$$
+
 
 ## Week 4
 
