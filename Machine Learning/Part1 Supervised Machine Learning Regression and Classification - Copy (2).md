@@ -1,4 +1,4 @@
-# Machine Learning
+# Supervised Machine Learning Regression and Classification
 
 ## Week 1
 
@@ -399,17 +399,3 @@ b &= b - \alpha\left[\frac{1}{m}\sum_{i=1}^{m}{f_{\vec{w}, b}(\vec{x}^{(i)} - y^
 \end{aligned}
 $$
 
-
-## Week 4
-
-## Week 5
-
-## Week 6
-
-## Week 7
-
-## Week 8
-
-## Week 9
-
-## Week 10
