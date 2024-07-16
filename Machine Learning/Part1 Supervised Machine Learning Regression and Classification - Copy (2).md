@@ -91,11 +91,11 @@ b &:= temp_b \\
 \end{aligned}
 $$
 
-Then we can generalize this method to more parameters. Suppose that we have a combination of parameters  $(w_1, w_2, \cdot\cdot\cdot, w_n, b)$ , we can implement the gradient descent algorithm like this
+Then we can generalize this method to more parameters. Suppose that we have a combination of parameters  $(w_1, w_2, \cdots, w_n, b)$ , we can implement the gradient descent algorithm like this
 
 $$
 \begin{aligned}
-temp_i &:= w_i - \alpha\frac{\partial}{\partial{w_i}}J(w_0, w_2, \cdot\cdot\cdot, w_n), i = 0, 1, \cdot\cdot\cdot, n \\
+temp_i &:= w_i - \alpha\frac{\partial}{\partial{w_i}}J(w_0, w_2, \cdots, w_n), i = 0, 1, \cdots, n \\
 w_i &:= temp_i \\
 \end{aligned}
 $$
@@ -139,8 +139,8 @@ Let $n$ denotes the number of features, $x_j$ denote the $j^{th}$ feature, $x^{(
 $$
 \begin{aligned}
 f_{\vec{w}, b}(x) &= \vec{w}\cdot\vec{x} + b \\
-&= [w_1, w_2, w_3, \cdot\cdot\cdot, w_n]\cdot\vec{x} + b \\
-&= w_1x_1 + w_2x_2 + w_3x_3 + \cdot\cdot\cdot + w_nx_n + b
+&= [w_1, w_2, w_3, \cdots, w_n]\cdot\vec{x} + b \\
+&= w_1x_1 + w_2x_2 + w_3x_3 + \cdots + w_nx_n + b
 \end{aligned}
 $$
 
@@ -151,7 +151,7 @@ In this expression, $\vec{w}$ is a row vector and $\vec{x}$ is a column vector.
 In Week 1, we have implemented the gradient descent algorithm. 
 
 $$
-w_i := w_i - \alpha\frac{\partial}{\partial{w_i}}J(w_0, w_2, \cdot\cdot\cdot, w_n), i = 0, 1, \cdot\cdot\cdot, n \\
+w_i := w_i - \alpha\frac{\partial}{\partial{w_i}}J(w_0, w_2, \cdots, w_n), i = 0, 1, \cdots, n \\
 $$
 
 This expression can be rewrited as
@@ -236,7 +236,7 @@ Remember $x_3$ is a combination of $x_1$ and $x_2$, so this is a quadratic expre
 Sometimes even a quadratic expression can not suit our need, and we have to add more parameters into the expression. Usually, we observe the data and determine which model should we try. The model will like this
 
 $$
-f_{\vec{w}, b}(x) = w_1x + w_2\sqrt{x} + w_3x^2 + \cdot\cdot\cdot + b
+f_{\vec{w}, b}(x) = w_1x + w_2\sqrt{x} + w_3x^2 + \cdots + b
 $$
 
 **Notice**

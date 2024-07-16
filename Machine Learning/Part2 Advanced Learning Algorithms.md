@@ -30,6 +30,73 @@ In the network, we propagating the activations of the neurons from the left to r
 
 With the neural networks inference using the forward propagation algorithm, we are able to download the parameters of a neural network that someone had trained to carry out inference on our new data using their neural network. 
 
+### Other Activation Functions
+
+#### Three Basic Activation functions
+
+Besides Sigmoid function, we have 2 other basic activation functions as well. 
+
+- Linear Activation Function (No activation function)
+
+  The expression is
+
+$$
+g(z) = z
+$$
+
+- **ReLU (Rectified Linear Unit)**
+
+  The expression is
+
+$$
+g(z) = max(0, z)
+$$
+
+#### Choosing Activation functions
+
+Now we know that there are many activation functions are used in deep learning. But the **ReLU** activation function is by far the most common choice in how neural networks are trained in the hidden layer. 
+
+Here are the reasons why people prefer ReLU activation function
+
+- ReLU is a bit faster to compare because it just requires computing max of 0 and z, where sigmoid requires taking an exponentiation and then a inverse and so on. 
+- ReLU function goes flat only in one part of the graph where the sigmoid activation function it goes flat in both left and right of the graph. So ReLU activation function will performance better in gradient descent and make out neural network to learn a bit faster as well.  
+
+Therefore, for the output layer, we recommend **sigmoid activation function** for **binary classification**, **linear activation function** for **linear regression** and $y$ can take on positive or negative values, and **ReLU 0999778activation function** for **regression** and $y$ can take only non-negative values. And for the hidden layer, we recommend just using **ReLU** as a default activation function. 
+
+**Notice: Do not use linear activations in hidden layers.**
+
+### Multiclass Classification
+
+A multiclass classification problem is still a classification problem in that $y$ can take on more than two possible values. But multiclass classification problem is still a classification problem in that $y$ can take on only a small number of discrete categories is not any number. 
+
+#### Softmax
+
+We have already know the expression of logistic regression. And **Softmax regression** is similar with logistic regression. For a softmax regression, we have
+$$
+z_j = \vec{w_j}\cdot\vec{x} + b_j,\ j = 1, 2, \cdots, n \\
+a_j = \frac{e^{z_j}}{\sum_{k=1}^{n}e^{z_k}} = P(y = j|\vec{x}) \\
+$$
+Apparently, 
+$$
+\sum_{j=1}^{n}a_j = 1, \ j = 1, 2, \cdots, n \\
+$$
+The **loss function** is 
+$$
+loss(a_1, a_2, \cdots, a_n, y) =  
+\begin{cases}
+\begin{matrix}
+-\log{a_1}\ \text{if}\ y = 1 \\
+-\log{a_2}\ \text{if}\ y = 2 \\
+\vdots \\
+-\log{a_n}\ \text{if}\ y = n \\
+\end{matrix}
+\end{cases}
+$$
+
+#### Multi-label Classification
+
+Sometimes we may encounter some problems that require us to classify more than one thing. We can choose multiclass classification or multi-label classification. For multiclass classification, there will be three neural networks and each of them has a output. For multi-label classification, it trains one neural network with three outputs, or we can say, a vector. 
+
 ## Week 2
 
 ## Week 3
