@@ -97,6 +97,19 @@ $$
 
 Sometimes we may encounter some problems that require us to classify more than one thing. We can choose multiclass classification or multi-label classification. For multiclass classification, there will be three neural networks and each of them has a output. For multi-label classification, it trains one neural network with three outputs, or we can say, a vector. 
 
+### Advanced Optimization
+
+In sometimes, traditional gradient descent algorithm may not perform very well. When every single step of gradient descent is pretty much going in the same direction, it means the learning rate is too small. When the steps of gradient descent is oscillating back and forth, it means the learning rate is too large. 
+
+Therefore, we can use **Adam (Adaptive Moment Estimation) Algorithm** to help gradient descent perform better. This algorithm has a unique learning rate for each feature. So the gradient descent expressions are
+$$
+w_1 = w_1 - \alpha_1\frac{\partial}{\partial{w_1}}J(\vec{w}, b) \\
+w_2 = w_2 - \alpha_2\frac{\partial}{\partial{w_2}}J(\vec{w}, b) \\
+\vdots \\
+b = b - \alpha_{n+1}\frac{\partial}{\partial{b}}J(\vec{w}, b) \\
+$$
+The solution of Adam algorithm is, if $w_j$ (or $b$) keeps moving in the same direction, then increase $\alpha_j$. And if $w_j$ (or $b$) keeps oscillating, then reduce $\alpha_j$. 
+
 ## Week 2
 
 ## Week 3
