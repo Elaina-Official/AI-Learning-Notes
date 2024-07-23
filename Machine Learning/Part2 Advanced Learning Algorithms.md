@@ -110,7 +110,70 @@ b = b - \alpha_{n+1}\frac{\partial}{\partial{b}}J(\vec{w}, b) \\
 $$
 The solution of Adam algorithm is, if $w_j$ (or $b$) keeps moving in the same direction, then increase $\alpha_j$. And if $w_j$ (or $b$) keeps oscillating, then reduce $\alpha_j$. 
 
-## Week 2
+## Week 2 
+
+### Machine learning Diagnostic
+
+#### Evaluating a Model
+
+ For a dataset, we can choose some of them to be a training set and the other to be a test set. $m_{train}$ and $m_{test}$ denote the size of training set and test set. 
+
+**Test Error** refers to the discrepancy between the predicted values and the actual values on a separate test dataset, which the model hasn't seen during training. It assesses the model's ability to generalize to new data. 
+
+**Training Error** refers to the discrepancy between the predicted values and the actual values on the training dataset. It reflects how well the model has learned the training data.
+
+**Train/Test procedure for linear regression with squared error cost**
+
+Fit parameters by minimizing cost function $J(\vec{w}, b)$
+$$
+J(\vec{w},b) = min_{\vec{w}, b}\left[\frac{1}{2m_{train}}\sum_{i=1}^{m_{train}}\left(f_{\vec{w},b}\left(\vec{x}^{(i)}\right) - y^{(i)}\right)^2 + \frac{\lambda}{2m_{train}}\sum_{j=1}^{n}w_j^2\right]
+$$
+The test error is 
+$$
+J_{test}(\vec{w},b) = \frac{1}{2m_{test}}\left[\sum_{i=1}^{m_{test}}\left(f_{\vec{w},b}\left(\vec{x}_{test}^{(i)}\right) - y_{test}^{(i)}\right)^2\right]
+$$
+The training error is 
+$$
+J_{train}(\vec{w},b) = \frac{1}{2m_{train}}\left[\sum_{i=1}^{m_{train}}\left(f_{\vec{w},b}\left(\vec{x}_{train}^{(i)}\right) - y_{train}^{(i)}\right)^2\right]
+$$
+**Train/Test procedure for classification problem**
+
+Fit parameters by minimizing $J(\vec{w},b)$ to find $\vec{w}, b$
+$$
+J(\vec{w},b) = -\frac{1}{m}\sum_{i=1}^{m}\left[y^{(i)}\log\left(f_{\vec{w},b}(\vec{x}^{(i)})\right) + (1-y^{(i)})\log\left(1-f_{\vec{w},b}(\vec{x}^{(i)})\right)\right]
+$$
+The test error is 
+$$
+J_{test}(\vec{w},b) = -\frac{1}{m_{test}}\sum_{i=1}^{m_{test}}\left[y_{test}^{(i)}\log\left(f_{\vec{w},b}(\vec{x}_{test}^{(i)})\right) + (1-y_{test}^{(i)})\log\left(1-f_{\vec{w},b}(\vec{x}_{test}^{(i)})\right)\right]
+$$
+The train error is
+$$
+J_{train}(\vec{w},b) = -\frac{1}{m_{train}}\sum_{i=1}^{m_{train}}\left[y_{train}^{(i)}\log\left(f_{\vec{w},b}(\vec{x}_{train}^{(i)})\right) + (1-y_{train}^{(i)})\log\left(1-f_{\vec{w},b}(\vec{x}_{train}^{(i)})\right)\right]
+$$
+Fraction of the test set and the fraction of the train set that the algorithm has misclassified. $J_{test}(\vec{w}, b)$ is the fraction of the test set that has been misclassified and $J_{train}(\vec{w},b)$ is the fraction of the train set that has been misclassified. 
+
+#### Model Selection
+
+If we want to decide a model with some features, we can evaluate the model with different amounts of features and then find out the model which perform best. For a whole dataset, we can divide them into three parts: **training set, cross validation, and test set**. And this evaluating method is better than only use training set and test set. **Cross validation**, also called development set or dev set, is an extra dataset that we are going to use to check or trust check the validity or really the accuracy of different models. And the cross validation error is very similar to the training error and test error. For linear regression, the cross validation error is
+$$
+J_{cv}(\vec{w},b) = \frac{1}{2m_{cv}}\left[\sum_{i=1}^{m_{cv}}\left(f_{\vec{w},b}\left(\vec{x}_{cv}^{(i)}\right) - y_{cv}^{(i)}\right)^2\right]
+$$
+
+### Bias and Variance
+
+Bias and variance are two fundamental concepts that describe the sources of error in machine learning models. **Bias** refers to the difference between training set and predicted results, and **variance** refers to the difference between cross validation and real dataset. 
+
+#### Establishing a Baseline Level of Performance
+
+Sometimes we may think that the performance of our model is not pretty well, such as $11\%$. But it is true? If we analysis the performance of human, we may find that the performance of human may be just $10\%$. So in this case, we can not say that our model performs not good. 
+
+Therefore, it is important to establish a baseline level of performance and get a level of error we can reasonably hope to get to. We should consider the human level performance, and then compete algorithms performance, and finally guess based on experience. Once we get the predicted performance of model, we will then know if our model really performs not well. 
+
+If the results of baseline performance and training error are similar, but the results of training error and cross validation error are quite different, it means the model has a high variance. If the results of training error and cross validation error are similar, but the results of baseline performance are quite different, it means the model has a high bias. If all these three have significant differences, it means the model has both high bias and high variance. 
+
+#### Learning Curves
+
+
 
 ## Week 3
 
