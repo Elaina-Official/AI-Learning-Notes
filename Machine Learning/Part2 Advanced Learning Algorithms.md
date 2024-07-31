@@ -95,7 +95,7 @@ $$
 
 #### Multi-label Classification
 
-Sometimes we may encounter some problems that require us to classify more than one thing. We can choose multiclass classification or multi-label classification. For multiclass classification, there will be three neural networks and each of them has a output. For multi-label classification, it trains one neural network with three outputs, or we can say, a vector. 
+Sometimes we may encounter some problems that require us to classify more than one thing. We can choose multiclass classification or multi-label classification. For multiclass classification, there will be several neural networks and each of them has a output. For multi-label classification, it trains one neural network with several outputs, or we can say, a vector. 
 
 ### Advanced Optimization
 
