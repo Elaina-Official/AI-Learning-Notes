@@ -171,9 +171,18 @@ Therefore, it is important to establish a baseline level of performance and get 
 
 If the results of baseline performance and training error are similar, but the results of training error and cross validation error are quite different, it means the model has a high variance. If the results of training error and cross validation error are similar, but the results of baseline performance are quite different, it means the model has a high bias. If all these three have significant differences, it means the model has both high bias and high variance. 
 
-#### Learning Curves
+#### Debugging a Learning Algorithm
 
+If we encounter high bias or high variance in debugging a learning algorithm, how can we fix them? Here are some solutions using linear regression as example.
 
+| Problem       | Solution                        |
+| ------------- | ------------------------------- |
+| High variance | Get more training examples      |
+| High variance | Try smaller sets of features    |
+| High variance | Try increasing $\lambda$        |
+| High bias     | Try getting additional features |
+| High bias     | Try adding polynomial features  |
+| High bias     | Try decreasing $\lambda$        |
 
 ## Week 3
 
