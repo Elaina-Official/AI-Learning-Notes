@@ -184,6 +184,46 @@ If we encounter high bias or high variance in debugging a learning algorithm, ho
 | High bias     | Try adding polynomial features  |
 | High bias     | Try decreasing $\lambda$        |
 
+### Machine Learning System Design
+
+#### Iterative Loop of ML Development
+
+Generally, the iterative loop of ML development is like
+
+```mermaid
+flowchart 
+	A(Choose architecture) --> B(Train model)
+	B --> C(Diagnostics)
+	C --> A
+```
+
+#### Error Analysis
+
+For a new machine learning problem, we should start with a simple algorithm. After we have the initial implementation, we use error analysis to see what errors have occurred, and then decide how to optimize it. This implementation is faster and more efficient than building a complex algorithm from the beginning
+
+#### Data Augmentation
+
+Data augmentation is a technique used to improve model performance by generating additional training data. It creates new data samples by applying **transformations** (such as rotation, cropping, flipping, scaling, adding noise, etc.) to the existing data. These transformations help the model better understand data diversity, reduce overfitting, and improve generalization when dealing with new data. Data augmentation is particularly common in computer vision but can also be applied in other fields, such as natural language processing and audio processing.
+
+In many practical applications of machine learning, we often cannot obtain enough data samples, so we can **expand the number of samples** through data augmentation, so that limited data can produce value equivalent to more data.
+
+#### Transfer Learning 
+
+Transfer learning is the ability of a system to recognize and apply knowledge and skills learned in previous domains/tasks to novel domains/tasks.
+
+Training a new machine learning model is a time-consuming and complex process that requires large amounts of data, computing power, and multiple iterations before it can be put into production. With transfer learning, organizations can use new data to retrain existing models for related tasks.
+
+Therefore, transfer learning can improves the efficiency, accessibility and performance of a model. 
+
+#### Full Cycle of a Machine Learning Project
+
+We can divide the project into four parts as follows:
+
+- Scope project: Define project
+- Collect data: Define and collect data
+- Train model: Training, error analysis & iterative improvement
+- Deploy in production: Deploy, monitor and maintain system
+
 ## Week 3
 
 ## Week 4
