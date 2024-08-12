@@ -224,6 +224,43 @@ We can divide the project into four parts as follows:
 - Train model: Training, error analysis & iterative improvement
 - Deploy in production: Deploy, monitor and maintain system
 
+### Skewed datasets
+
+#### Error Metrics for Skewed Datasets
+
+In machine learning, Precision and Recall are crucial metrics for evaluating the performance of classification models, especially when dealing with imbalanced datasets.
+
+For a model prediction results, we have four classes. 
+
+|         \          |  Actual Class: 1   |  Actual Class: 0   |
+| :----------------: | :----------------: | :----------------: |
+| Predicted Class: 1 | True Positive(TP)  | False Positive(FP) |
+| Predicted Class: 0 | False Negative(FN) | True  Negative(TN) |
+
+- Precision
+
+Precision refers to the proportion of true positive predictions among all the instances that the model predicted as positive. It measures the accuracy of the positive predictions made by the model.
+$$
+Precision = \frac{True\ Positives(TP)}{True\ Positives(TP) + False\ Positives(FP)}
+$$
+
+- Recall
+
+Recall refers to the proportion of true positive instances that were correctly identified by the model out of all the actual positive instances. It measures the model's ability to capture all the relevant positive cases.
+$$
+Recall = \frac{True\ Positives(TP)}{True\ Positives(TP) + False\ Negatives(FN)}
+$$
+
+#### Trading Off Precision and Recall
+
+Generally, we will use 0.5 as the threshold for the model output value, thereby dividing the prediction results into two categories: true and false. If we want to get a higher precision and a lower recall, then we can use a threshold larger than 0.5. And if we want to get a lower precision and a higher recall, then we can use a threshold smaller than 0.5. 
+
+A useful model usually requires both high precision and high recall. We can use $F_1$ score to measure the performance of the model. 
+$$
+F_1\ score = \frac{1}{\frac{1}{2}\left(\frac{1}{P}+\frac{1}{R}\right)} = \frac{2PR}{P+R}
+$$
+The larger the value of $F_1$, the precision and recall of the model are approximately balanced.
+
 ## Week 3
 
 ## Week 4
