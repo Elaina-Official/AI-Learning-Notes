@@ -253,7 +253,7 @@ $$
 
 #### Trading Off Precision and Recall
 
-Generally, we will use 0.5 as the threshold for the model output value, thereby dividing the prediction results into two categories: true and false. If we want to get a higher precision and a lower recall, then we can use a threshold larger than 0.5. And if we want to get a lower precision and a higher recall, then we can use a threshold smaller than 0.5. 
+Generally, we will use 0.5 as the **threshold** for the model output value, thereby dividing the prediction results into two categories: true and false. If we want to get a higher precision and a lower recall, then we can use a threshold larger than 0.5. And if we want to get a lower precision and a higher recall, then we can use a threshold smaller than 0.5. 
 
 A useful model usually requires both high precision and high recall. We can use $F_1$ score to measure the performance of the model. 
 $$
@@ -261,7 +261,66 @@ F_1\ score = \frac{1}{\frac{1}{2}\left(\frac{1}{P}+\frac{1}{R}\right)} = \frac{2
 $$
 The larger the value of $F_1$, the precision and recall of the model are approximately balanced.
 
+We can also draw a precision-recall diagram and choose a suitable threshold for the model.
+
 ## Week 3
+
+### Decision Trees
+
+#### Decision Tree Model
+
+A decision tree is a supervised learning algorithm used for both classification and regression tasks. It works by **splitting the data into subsets based on feature values**, creating a tree-like structure where each internal node represents a feature attribute, each branch represents a possible value of that feature, and each leaf node represents a final decision or prediction.
+
+The process of building a decision tree involves selecting the best feature to split the data at each step to reduce uncertainty , and then recursively constructing subtrees for the resulting subsets until certain stopping criteria are met.
+#### Learning Process
+
+When building a decision tree, we should maximize the purity(or minimize the impurity) to choose what feature to split on at each node. This means that the samples in each subset either belong to the same category as much as possible, or their target values are as similar as possible.
+
+To build a useful model, we also need to limit the depth of the tree, or it may cause the overfitting. Here are some situations that we need to stop splitting. 
+
+- When a node is 100% one class
+
+- When splitting a node will result in the tree exceeding a maximum depth
+
+- When improvements in purity score are below a threshold
+
+- When number of examples in a node is below a threshold
+
+#### Measuring Purity
+
+Entropy is a measure of the impurity of a set of data. Let 
+$$
+p_1 = \text{fraction of examples that are cats} \\
+p_0 = 1 - p_1
+$$
+Then the extropy function is
+$$
+\begin{aligned}
+H(p_1) &= -p_1\log_2(p_1) - p_0\log_2(p_0) \\
+&= -p_1\log_2(p_1) - (1-p_1)\log_2(1-p_1) \\
+\end{aligned}
+$$
+Specially, we define $0\log(0)=0$.
+
+#### Choosing a Split
+
+For a node in decision tree, we use
+
+- $p_1^{root}$ as the proportion of target in root node samples
+- $p_1^{left}$ as the proportion of target in left child node samples
+- $p_1^{right}$ as the proportion of target in right child node samples
+- $w^{left}$ as the proportion of left child node samples in root node samples
+- $w^{right}$ as the proportion of right child node samples in root node samples
+
+And the **information gain** is
+$$
+H(p_1^{root}) - \left(w^{left}H(p_1^{left}) + w^{right}H(p_1^{right})\right)
+$$
+The greater the information gain, the more suitable it is as a splitting feature in the decision tree.
+
+#### Splitting on a Continuous variable
+
+For a continuous variable, we need to sort the values, then calculate information gain for each potential split point and select the best split point. The best split point has the maximum information gain.
 
 ## Week 4
 
