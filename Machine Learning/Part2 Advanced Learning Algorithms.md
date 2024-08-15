@@ -322,5 +322,23 @@ The greater the information gain, the more suitable it is as a splitting feature
 
 For a continuous variable, we need to sort the values, then calculate information gain for each potential split point and select the best split point. The best split point has the maximum information gain.
 
+### Tree Ensemble
+
+One of the weaknesses of using a single decision tree is that decision tree can be highly sensitive to small changes in the data. We can build a lot of decision trees and we called that a tree ensemble. 
+
+When we use a large number of decision trees and have them vote, our overall algorithm becomes **less sensitive** to the behavior of any single tree, as each tree contributes only one vote among many. This collective voting process enhances the robustness of the entire algorithm.
+
+#### Sampling with Replacement
+
+Sampling with replacement is a method where each time you select a sample from a dataset, you return it back to the dataset before the next draw. This means **the same sample can be selected multiple times** during the sampling process. Each draw is independent, and every sample has an equal chance of being selected in every draw.
+
+The process of sampling with replacement lets us construct a new training set. That's a bit similar to but also pretty different from our original training set. It turns out that this would be the key building block for building an ensemble of trees. 
+
+#### Random Forest Algorithm
+
+The Random Forest algorithm is an ensemble learning method that builds multiple decision trees to perform classification or regression. Each tree is trained on a random subset of the original dataset, and at each node, only a randomly selected subset of features is considered for splitting. The final prediction is made by aggregating the results of all the trees, either through majority voting or averaging.
+
+We usually choose the size of forest between $64$ and $128$. At each node, when choosing a feature to use to split, if $n$ features are available, pick a random subset of $k < n$ features and allow the algorithm to only choose from that subset of features. A typical choice for the value of $k$ would be to choose it to be square root of $n$. 
+
 ## Week 4
 
