@@ -338,7 +338,26 @@ The process of sampling with replacement lets us construct a new training set. T
 
 The Random Forest algorithm is an ensemble learning method that builds multiple decision trees to perform classification or regression. Each tree is trained on a random subset of the original dataset, and at each node, only a randomly selected subset of features is considered for splitting. The final prediction is made by aggregating the results of all the trees, either through majority voting or averaging.
 
-We usually choose the size of forest between $64$ and $128$. At each node, when choosing a feature to use to split, if $n$ features are available, pick a random subset of $k < n$ features and allow the algorithm to only choose from that subset of features. A typical choice for the value of $k$ would be to choose it to be square root of $n$. 
+We usually choose the size of forest between $64$ and $128$. At each node, when choosing a feature to use to split, if $n$ features are available, pick a random subset of $k < n$ features and allow the algorithm to only choose from that subset of features. A typical choice for the value of $k$ would be to choose it to be square root of $n\ (k = \sqrt{n})$. 
 
-## Week 4
+#### XGBoost
 
+XGBoost (Extreme Gradient Boosting) is an efficient and flexible machine learning algorithm that is part of the **gradient boosting framework**. It builds a series of decision trees iteratively, with each new tree improving the model's performance by **minimizing a loss function** based on the previous trees.
+
+It is widely popular in data competitions and real-world applications, particularly for large-scale datasets and complex problems. It is commonly used for tasks such as classification, regression, and ranking, and has been highly successful in Kaggle competitions.
+
+#### When to Use Decision Trees
+
+**Decision Trees and Tree ensembles**
+
+- Works well on tabular (structured) data
+- Not recommended for unstructured data (images, audio, text)
+- Fast
+- Small decision trees may be human interpretable
+
+**Neural Networks**
+
+- Works well on all types of data, including tabular (structured) and unstructured data
+- May be slower than a decision tree
+- Works with transfer learning
+- When building a system of multiple models working together, it might be easier to string together multiple neural networks
