@@ -35,8 +35,6 @@ $$
 
 By minimizing the distortion function, K-Means is able to generate cluster divisions that cluster well.
 
-In practice, we usually find the point at which the decrease in the distortion function decreases significantly as K continues to increase. The value of K corresponding to this point is usually chosen as the optimal number of clusters because it provides a better balance between clustering effectiveness and computational complexity.
-
 ##### Initialize K-means
 
 Selecting the initialization centroid for the K-Means algorithm is an important step in the quality of clustering. The choice of the centroid of mass has a large impact on the final clustering results, as the K-Means algorithm is susceptible to the position of the initial centroid of mass, which may cause the algorithm to fall into a local optimum solution.
@@ -47,3 +45,6 @@ Selecting the initialization centroid for the K-Means algorithm is an important 
 
 ##### Choosing the Number of Clusters
 
+We usually find the point at which the decrease in the distortion function decreases significantly as $K$ continues to increase. The value of $K$ corresponding to this point is usually chosen as the optimal number of clusters because it provides a better balance between clustering effectiveness and computational complexity.
+
+But for some situations, decrease of the distortion function is very slow, and this method does not perform well. So we can evaluate $K$ based on how well it performs for that downstream purpose. 
