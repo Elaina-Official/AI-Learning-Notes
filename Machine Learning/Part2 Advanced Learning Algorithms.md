@@ -2,7 +2,7 @@
 
 ## Week 1
 
-### Neurons and the brain
+### Neurons and the Brain
 
 #### Neural Networks
 
@@ -32,7 +32,7 @@ With the neural networks inference using the forward propagation algorithm, we a
 
 ### Other Activation Functions
 
-#### Three Basic Activation functions
+#### Three Basic Activation Functions
 
 Besides Sigmoid function, we have 2 other basic activation functions as well. 
 
@@ -52,7 +52,7 @@ $$
 g(z) = max(0, z)
 $$
 
-#### Choosing Activation functions
+#### Choosing Activation Functions
 
 Now we know that there are many activation functions are used in deep learning. But the **ReLU** activation function is by far the most common choice in how neural networks are trained in the hidden layer. 
 
@@ -318,7 +318,7 @@ H(p_1^{root}) - \left(w^{left}H(p_1^{left}) + w^{right}H(p_1^{right})\right)
 $$
 The greater the information gain, the more suitable it is as a splitting feature in the decision tree.
 
-#### Splitting on a Continuous variable
+#### Splitting on a Continuous Variable
 
 For a continuous variable, we need to sort the values, then calculate information gain for each potential split point and select the best split point. The best split point has the maximum information gain.
 
