@@ -48,3 +48,43 @@ Selecting the initialization centroid for the K-Means algorithm is an important 
 We usually find the point at which the decrease in the distortion function decreases significantly as $K$ continues to increase. The value of $K$ corresponding to this point is usually chosen as the optimal number of clusters because it provides a better balance between clustering effectiveness and computational complexity.
 
 But for some situations, decrease of the distortion function is very slow, and this method does not perform well. So we can evaluate $K$ based on how well it performs for that downstream purpose. 
+
+### Finding unusual events
+
+#### Anomaly Detection Algorithm
+
+Anomaly detection algorithms look at an unlabeled dataset of normal events and thereby learns to detect or to raise a red flag for if there is an unusual or anomalous event. A anomaly detection algorithm will always have following steps.
+
+- Choose $n$ features $x_i$ that you think might be indicative of anomalous examples.
+- Fit parameters $\mu_1, \cdots, \mu_n, \sigma_1^2, \cdots, \sigma_n^2$
+
+$$
+\mu_j = \frac{1}{m}\sum_{i=1}^m{x_j^{(i)}}\ \ \ \ \ \ \sigma_j^2 = \frac{1}{m}\sum_{i=1}^m{(x_j^{(i)})-\mu_j^2}
+$$
+
+- Given new example $x$, compute $p(x)$
+
+$$
+p(x) = \prod_{j=1}^n{p(x_j;\mu_j;\sigma_j^2)} = \prod_{J=1}^n{\frac{1}{\sqrt{2\pi}\sigma_j}exp(-\frac{(x_j-\mu_j)^2}{2\sigma_j^2})}
+$$
+
+
+
+Assume that $\epsilon$ is small enough, then anomaly if $p(x) < \epsilon$. 
+
+#### Developing and Evaluating Anomaly Detection System
+
+we often evaluate anomaly detection system on a cross validation set to choose parameter $\epsilon$ . Here are some possible evaluation metrics
+
+- True Positive(TP), False Positive(FP), False Negative(FN), True Negative(TN)
+- Precision/Recall
+- F1-score
+
+Anomaly detection is suitable for scenarios dealing with extremely unbalanced data, difficult to label, or where the type of anomaly is unknown.
+
+#### Choosing What Features to Use
+
+In anomaly detection, Gaussianization of part of the data is a common preprocessing step to transform the data into a form that more closely matches a Gaussian distribution. By Gaussianising the data, it is possible to simplify the distributional properties of the data to more closely approximate these assumptions, thus improving the effectiveness of the algorithm.
+
+At the same time, Gaussian distribution has good mathematical properties for further analysis and calculations. Since the probability density function (PDF) of the Gaussian distribution has a closed form, which facilitates the calculation of statistics such as probabilities and confidence intervals.
+
