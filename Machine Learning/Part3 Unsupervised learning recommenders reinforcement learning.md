@@ -88,3 +88,37 @@ In anomaly detection, Gaussianization of part of the data is a common preprocess
 
 At the same time, Gaussian distribution has good mathematical properties for further analysis and calculations. Since the probability density function (PDF) of the Gaussian distribution has a closed form, which facilitates the calculation of statistics such as probabilities and confidence intervals.
 
+## Week 2
+
+### Recommender System
+
+If we want to build a recommender system, we need to build a model for each user and analyze their preferences.
+
+#### Cost Function
+
+Suppose we have following parameters
+
+- $r(i, j) = 1$ if user $j$ has rated movie $i$ ($0$ otherwise)
+- $y^{(i, j)} = $ rating given by user $j$ on movie $i$ (if defined)
+- $w^{(j)}, b^{(j)} = $ parameters for user $j$
+- $x^{(i)} = $ feature vector for movie $i$
+
+For user $j$ and movie $i$, predict rating: $w^{(j)}\cdot x^{(i)} + b^{(j)}$
+
+$m^{(j)} = $ no. of movies rated by user $j$
+
+To learn parameters $w^{(j)}, b^{(j)}$ for user $j$, we have cost function
+$$
+J(w^{(j)}, b^{(j)})) = \frac{1}{2}\sum_{i:r(i,j)=1}(w^{(j)}\cdot x^{(i)} + b^{(j)} - y^{(i,j)})^2 + \frac{\lambda}{2}\sum_{k=1}^{n}(w_k^{(j)})^2
+$$
+To learn parameters $w^{(j)}, b^{(j)}, w^{(2)}, b^{(2)}, \cdots, w^{(n_u), b^{(n_u)}}$ for all users, we have cost function
+$$
+J\left(
+\begin{matrix}
+w^{(1)}, \cdots, w^{(n_u)} \\
+b^{(1)}, \cdots, b^{(n_u)} 
+\end{matrix}
+\right) 
+= \frac{1}{2}\sum_{j=1}^{n_u}\sum_{i:r(i,j)=1}(w^{(j)}\cdot x^{(i)} + b^{(j)} - y^{(i,j)})^2 + \frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^{n}(w_k^{(j)})^2
+$$
+Then we can minimize the cost function and find the best value for the parameters.
