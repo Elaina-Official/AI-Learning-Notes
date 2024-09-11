@@ -96,7 +96,7 @@ If we want to build a recommender system, we need to build a model for each user
 
 #### Cost Function
 
-Suppose we have following parameters
+Suppose we are building a movie recommender system, and now we have following parameters
 
 - $r(i, j) = 1$ if user $j$ has rated movie $i$ ($0$ otherwise)
 - $y^{(i, j)} = $ rating given by user $j$ on movie $i$ (if defined)
@@ -111,7 +111,7 @@ To learn parameters $w^{(j)}, b^{(j)}$ for user $j$, we have cost function
 $$
 J(w^{(j)}, b^{(j)})) = \frac{1}{2}\sum_{i:r(i,j)=1}(w^{(j)}\cdot x^{(i)} + b^{(j)} - y^{(i,j)})^2 + \frac{\lambda}{2}\sum_{k=1}^{n}(w_k^{(j)})^2
 $$
-To learn parameters $w^{(j)}, b^{(j)}, w^{(2)}, b^{(2)}, \cdots, w^{(n_u), b^{(n_u)}}$ for all users, we have cost function
+To learn parameters $w^{(1)}, b^{(1)}, w^{(2)}, b^{(2)}, \cdots, w^{(n_u), b^{(n_u)}}$ for all users, we have cost function
 $$
 J\left(
 \begin{matrix}
@@ -122,3 +122,28 @@ b^{(1)}, \cdots, b^{(n_u)}
 = \frac{1}{2}\sum_{j=1}^{n_u}\sum_{i:r(i,j)=1}(w^{(j)}\cdot x^{(i)} + b^{(j)} - y^{(i,j)})^2 + \frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^{n}(w_k^{(j)})^2
 $$
 Then we can minimize the cost function and find the best value for the parameters.
+
+#### Collaborative Filtering Algorithm
+
+Sometimes we do not know the feature vector for the movies, and we want to inference them from the rating given by users. This method analyzes the similarities between users and then calculate the possible feature vector for the movies. 
+
+We already have the cost function to learn $w^{(1)}, b^{(1)}, \cdots, w^{(n_u), b^{(n_u)}}$
+$$
+J(w, b) = \frac{1}{2}\sum_{j=1}^{n_u}\sum_{i:r(i,j)=1}(w^{(j)}\cdot x^{(i)} + b^{(j)} - y^{(i,j)})^2 + \frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^{n}(w_k^{(j)})^2
+$$
+Similarly, we can know the cost function to learn $x^{(1)}, \cdots, x^{(n_m)}$
+$$
+J(x) = \frac{1}{2}\sum_{i=1}^{n_m}\sum_{j:r(i,j)=1}(w^{(j)}\cdot x^{(i)} + b^{(j)} - y^{(i,j)})^2 + \frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^{n}(x_k^{(i)})^2
+$$
+Integrate the two cost function above, we have 
+$$
+J(w,b,x) = \frac{1}{2}\sum_{(i,j):r(i,j)=1}(w^{(j)}\cdot x^{(i)} + b^{(j)} - y^{(i,j)})^2 + \frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^{n}(w_k^{(j)})^2 + \frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^{n}(x_k^{(i)})^2
+$$
+To get the best parameters for $w,b,x$, we need to minimize $J(w,b,x)$. 
+
+One simple method is using gradient descent, and we can implement the gradient descent algorithm like this
+$$
+w_i^{(j)} := w_i^{(j)} - \alpha\frac{\partial}{\partial w_i^{(j)}}J(w,b,x) \\
+b^{(j)} := b^{(j)} - \alpha\frac{\partial}{\partial b^{(j)}}J(w,b,x) \\
+x_k^{(i)} := x_k^{(i)} - \alpha\frac{\partial}{\partial x_k^{(i)}}J(w,b,x) \\
+$$
