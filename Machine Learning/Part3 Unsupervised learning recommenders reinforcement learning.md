@@ -159,3 +159,18 @@ w_i^{(j)} := w_i^{(j)} - \alpha\frac{\partial}{\partial w_i^{(j)}}J(w,b,x) \\
 b^{(j)} := b^{(j)} - \alpha\frac{\partial}{\partial b^{(j)}}J(w,b,x) \\
 x_k^{(i)} := x_k^{(i)} - \alpha\frac{\partial}{\partial x_k^{(i)}}J(w,b,x) \\
 $$
+
+#### Binary Labels
+
+Many important applications of recommended systems or collective filtering algorithms involved binary labels instead of multiple labels. 
+
+We need a new loss function which is more appropriate for binary labels. And the loss function is 
+
+$$
+y^{(i,j)}:f_{(w,b,x)}(x) = g(w^{(j)}\cdot x^{(i)}+b^{(j)}) \\
+L\left(f_{(w,b,x)}(x),y^{(i,j)}\right) = -y^{(i,j)}\log\left(f_{(w,b,x)}(x)\right) - (1-y^{(i,j)})\log\left(1-f_{(w,b,x)}(x)\right) \\
+J(w,b,x) = \sum_{(i,j):r(i,j)=1}L\left(f_{(w,b,x)}(x),y^{(i,j)}\right)
+$$
+
+So with this loss function, we can take the linear regression like collaborative filtering algorithm and generalize it to work with binary labels. 
+
