@@ -174,3 +174,10 @@ $$
 
 So with this loss function, we can take the linear regression like collaborative filtering algorithm and generalize it to work with binary labels. 
 
+#### Mean Normalization
+
+If we first carry out mean normalization, the model will perform better. For a new user who has not rate any movie, we can use mean normalization to make the prediction more reasonable. We take all of the values from the users and put them into a two dimensional matrix. And then calculate the average rating for each movie to become a vector $\mu$. For each column in the matrix, it should minus the vector $\mu$ and get a new matrix. Now we can use this new matrix to predict the rating from new users. And the new predict result will be
+$$
+w^{(j)}\cdot x^{(i)} + b^{(j)} + \mu_i
+$$
+Normalization makes the algorithm tun a bit faster, but even more important, it makes the algorithm give much better, much more reasonable when there are users that rated very few movies or even no movies at all. 
