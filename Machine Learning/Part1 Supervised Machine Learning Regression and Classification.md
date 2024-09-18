@@ -333,7 +333,7 @@ b &= b - \alpha\left[\frac{1}{m}\sum_{i=1}^{m}{f_{\vec{w}, b}(\vec{x}^{(i)} - y^
 \end{aligned}
 $$
 
-Although this expression is similar with the gradient descent of linear regression, they are very different because we use $f_{\vec{w},b}(x) = \vec{w}\cdot\vec{x} + b$ for linear regression and use $f_{\vec{w},b}(x) = \frac{1}{1+e^{(-\vec{w}\cdot\vec{x}+b)}}$ for logistic regression. 
+Although this expression is similar with the gradient descent of linear regression, they are very different because we use $f_{\vec{w},b}(x) = \vec{w}\cdot\vec{x} + b$ for linear regression and use $\displaystyle f_{\vec{w},b}(x) = \frac{1}{1+e^{(-\vec{w}\cdot\vec{x}+b)}}$ for logistic regression. 
 
 ### Overfitting
 
