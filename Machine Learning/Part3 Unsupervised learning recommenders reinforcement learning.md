@@ -95,7 +95,9 @@ At the same time, Gaussian distribution has good mathematical properties for fur
 
 If we want to build a recommender system, we need to build a model for each user and analyze their preferences.
 
-#### Cost Function
+#### Collaborative Filtering 
+
+##### Cost Function
 
 Suppose we are building a movie recommender system, and now we have following parameters
 
@@ -128,7 +130,7 @@ $$
 
 Then we can minimize the cost function and find the best value for the parameters.
 
-#### Collaborative Filtering Algorithm
+##### Collaborative Filtering Algorithm
 
 Sometimes we do not know the feature vector for the movies, and we want to inference them from the rating given by users. This method analyzes the similarities between users and then calculate the possible feature vector for the movies. 
 
@@ -160,7 +162,7 @@ b^{(j)} := b^{(j)} - \alpha\frac{\partial}{\partial b^{(j)}}J(w,b,x) \\
 x_k^{(i)} := x_k^{(i)} - \alpha\frac{\partial}{\partial x_k^{(i)}}J(w,b,x) \\
 $$
 
-#### Binary Labels
+##### Binary Labels
 
 Many important applications of recommended systems or collective filtering algorithms involved binary labels instead of multiple labels. 
 
@@ -174,10 +176,22 @@ $$
 
 So with this loss function, we can take the linear regression like collaborative filtering algorithm and generalize it to work with binary labels. 
 
-#### Mean Normalization
+##### Mean Normalization
 
 If we first carry out mean normalization, the model will perform better. For a new user who has not rate any movie, we can use mean normalization to make the prediction more reasonable. We take all of the values from the users and put them into a two dimensional matrix. And then calculate the average rating for each movie to become a vector $\mu$. For each column in the matrix, it should minus the vector $\mu$ and get a new matrix. Now we can use this new matrix to predict the rating from new users. And the new predict result will be
 $$
 w^{(j)}\cdot x^{(i)} + b^{(j)} + \mu_i
 $$
 Normalization makes the algorithm tun a bit faster, but even more important, it makes the algorithm give much better, much more reasonable when there are users that rated very few movies or even no movies at all. 
+
+#### Content-based Filtering 
+
+We have learned the collaborative filtering so far, and we will start to develop a second type of recommender system called content-based filtering algorithm. Instead of depending on rating of users who gave similar ratings, this system is based on features of user and item to find good match. 
+
+We also use $r(i, j)$ to denote whether user $j$ has rated item $i$, and use $y(i,j)$ to denote the rating given by user $j$ on item $i$. Suppose $x_u^{(j)}$ is the user feature for user $j$ and $x_m^{(i)}$ is the movie features for movie $i$. 
+
+Then we predict rating of user $j$ on movie $i$ as 
+$$
+v_u^{(j)}\cdot v_m^{(i)}
+$$
+, where $v_u^{(j)}$ is computed from $x_u^{(j)}$ and $v_m^{(i)}$ is computed from $x_m^{(i)}$. Apparently, vector $v_u$ represents the user's preferences and vector $v_m$ represents the movie features. 
