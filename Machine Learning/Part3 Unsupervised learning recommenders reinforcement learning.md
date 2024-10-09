@@ -186,6 +186,8 @@ Normalization makes the algorithm tun a bit faster, but even more important, it 
 
 #### Content-based Filtering 
 
+##### Introduction
+
 We have learned the collaborative filtering so far, and we will start to develop a second type of recommender system called content-based filtering algorithm. Instead of depending on rating of users who gave similar ratings, this system is based on features of user and item to find good match. 
 
 We also use $r(i, j)$ to denote whether user $j$ has rated item $i$, and use $y(i,j)$ to denote the rating given by user $j$ on item $i$. Suppose $x_u^{(j)}$ is the user feature for user $j$ and $x_m^{(i)}$ is the movie features for movie $i$. 
@@ -194,4 +196,23 @@ Then we predict rating of user $j$ on movie $i$ as
 $$
 v_u^{(j)}\cdot v_m^{(i)}
 $$
-, where $v_u^{(j)}$ is computed from $x_u^{(j)}$ and $v_m^{(i)}$ is computed from $x_m^{(i)}$. Apparently, vector $v_u$ represents the user's preferences and vector $v_m$ represents the movie features. 
+where $v_u^{(j)}$ is computed from $x_u^{(j)}$ and $v_m^{(i)}$ is computed from $x_m^{(i)}$. Apparently, vector $v_u$ represents the user's preferences and vector $v_m$ represents the movie features. 
+
+##### Deep Learning for Content-Based filtering
+
+A good way to develop a content based filtering algorithm is to use deep learning. We can build a user network which takes $x$ input the list of features of the user $x_u$, such as the age, gender, the country of the user, and so on. Then using a few layers, say dense neural network layers, it will output this vector $v_u$ that describe the user. Notice that in this neural network, the output layer has several units, and so $v_u$ is actually a list of 32 numbers. Similarly, to compute $v_m$ for a  movie,  we can have a movie network which takes $x$ input features of the movie and through a few layers of a neural network ends up outputting $v_m$, the vector that describes the movie. Finally, we will predict the rating of this user on that movie as $v_u\cdot v_m$. We can also use a sigmoid function to get the input between $0$ and $1$, like $g(v_u\cdot v_m)$.
+
+##### Cost Function
+
+For the neural network above, the cost function is
+$$
+J = \sum_{(i,j):r(i.j)=1}(v_u^{(j)}\cdot v_m^{i}-y^{(i,y)})^2+\text{NN regularization term}
+$$
+
+##### Recommending form a Large Catalogue
+
+For a website who has more than $10$ million users, we cannot compute the neural network for each user. Many large scaled recommend system are implemented as two steps, which are called **Retrieval** and **Ranking** steps. The retrieval step will generate a large list of plausible item candidates that tries to cover a lot of possible things you might recommend to user. Then we combine retrieved items into list, removing duplicates and items that we do not want to recommend for the user anymore. The second step is ranking step. in the ranking step, we take list retrieved and rank using learn model and display ranked items to user. 
+
+Retrieving more items results in better performance, but slower recommendations.
+
+To analyse/optimize the trade-off carry out offline experiments to see if retrieving additional items results in more relevant recommendations (i.e., $p(y(^{i.j})) = 1$ of items displayed to user are higher).
