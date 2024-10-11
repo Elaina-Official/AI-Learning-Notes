@@ -215,4 +215,45 @@ For a website who has more than $10$ million users, we cannot compute the neural
 
 Retrieving more items results in better performance, but slower recommendations.
 
-To analyse/optimize the trade-off carry out offline experiments to see if retrieving additional items results in more relevant recommendations (i.e., $p(y(^{i.j})) = 1$ of items displayed to user are higher).
+To analyze/optimize the trade-off carry out offline experiments to see if retrieving additional items results in more relevant recommendations (i.e., $p(y(^{i.j})) = 1$ of items displayed to user are higher).
+
+## Week 3
+
+### Reinforcement Learning
+
+#### What is Reinforcement Learning
+
+**Reinforcement Learning (RL)** is a branch of machine learning where an agent learns to make decisions by interacting with an environment. The agent performs actions, observes the results, and receives rewards or penalties based on the outcome. The goal of RL is to train the agent to maximize cumulative rewards over time by learning the best strategies (also known as policies) through trial and error. RL is widely used in areas like robotics, gaming, autonomous systems, and more, as it is well-suited for problems that require sequential decision-making in dynamic environments.
+
+#### The Return in Reinforcement Learning
+
+The return in reinforcement learning is the sum if the rewards that the system gets, but weighted by the discount factor, where rewards in the far future are weighted by the discount factor raised to a higher power. If there are any rewards are negative, then the discount factor actually incentivizes the system to push out the negative rewards as fat into the future as possible. 
+
+#### Making Decisions: Policies in Reinforcement Learning 
+
+In reinforcement learning, our goal is to come up with a function which is called a policy $\pi$, whose job is to take as input, any state $s$ and map it to some action $a$ that it wants us to take. The goal of reinforcement learning is to find a policy $\pi$ or $\pi(s)$ that tells you what action to take in every state so as to maximize the return. 
+
+### State-Action Value Function
+
+#### State-Action Value Function Definition
+
+The state-action value function is a function typically denoted by the letter $Q$, and it is a function of a state you might be in, as well as the action you might choose to take in that state. The Q-value $Q(s,a)$ represents the return you get if you start in state $s$, take action $a$ once, and then follow the optimal policy thereafter. The best possible return from state $s$ is $\underset{a}{\max}Q(s,a)$. The best possible action in state $s$ is the action $a$ that gives $\underset{a}{\max}Q(s,a)$. 
+
+#### Bellman Equation
+
+The **Bellman equation** is a fundamental recursive relationship used in dynamic programming and reinforcement learning to describe the value of a decision problem. It breaks down the value (or expected reward) of a state into two components: the immediate reward from taking an action in the current state, and the expected value of future rewards from the subsequent state. The Bellman equation helps define the optimal policy by relating the value of a state to the values of the possible subsequent states, forming the basis for algorithms like value iteration and Q-learning.
+
+To better understand Bellman equation, let's suppose 
+
+- $s$ is the current state
+- $a$ is the current action
+- $R(s)$ is the reward of current state 
+- $\gamma$ is the discount factor 
+- $s'$ is the state we get to after taking action $a$
+- $a'$ is the action that we take in state $s'$
+
+Then the Bellman Equation is 
+$$
+Q(s,a) = R(s)+\gamma\underset{a'}{\max}Q(s',a')
+$$
+ 
