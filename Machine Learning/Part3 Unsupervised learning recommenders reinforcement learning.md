@@ -256,4 +256,11 @@ Then the Bellman Equation is
 $$
 Q(s,a) = R(s)+\gamma\underset{a'}{\max}Q(s',a')
 $$
- 
+
+#### Random Environment
+
+In some applications, when we take an action, the outcome is not always completed reliable. Since the goal of reinforcement learning is to choose a policy $\pi(s)= a$ that will tell us what action a to take in state s so as to maximize the expected return, then the new Bellman equation will be
+$$
+Q(s,a) = R(s)+\gamma E[\underset{a'}{\max}Q(s',a')]
+$$
+In the equation, $E$ means the average value of $\underset{a'}{\max}Q(s',a')$. 
