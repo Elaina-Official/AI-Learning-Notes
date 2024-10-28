@@ -264,3 +264,14 @@ $$
 Q(s,a) = R(s)+\gamma E[\underset{a'}{\max}Q(s',a')]
 $$
 In the equation, $E$ means the average value of $\underset{a'}{\max}Q(s',a')$. 
+
+#### State-Value Function
+
+For the Bellman Equation, firstly we initialize neural network randomly as guess of $Q(s,a)$. 
+
+Then we repeat the following steps:
+
+- Take action in the lunar lander. Get $(s,a,R(s),s')$.
+- Store $10000$ most recent $(s,a,R(s),s')$ tuples.
+
+After these steps, we can train the neural network by creating training set of $10000$ examples using $x=(s,a)$ and $y=R(s)+\gamma \underset{a'}{\max}Q(s',a')$. 
