@@ -89,12 +89,12 @@ The **loss function** is
 $$
 loss(a_1, a_2, \cdots, a_n, y) =  
 \begin{cases}
-\begin{matrix}
--\log{a_1}\ \text{if}\ y = 1 \\
--\log{a_2}\ \text{if}\ y = 2 \\
-\vdots \\
--\log{a_n}\ \text{if}\ y = n \\
-\end{matrix}
+\begin{array}{ll}
+-\log{a_1} & \text{if}\ y = 1 \\
+-\log{a_2} & \text{if}\ y = 2 \\
+&\vdots \\
+-\log{a_n} & \text{if}\ y = n \\
+\end{array}
 \end{cases}
 $$
 

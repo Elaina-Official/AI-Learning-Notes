@@ -27,7 +27,7 @@ If a cluster has zero training examples assigned to it, the third step would be 
 In K-means algorithm, we use distortion function as loss function. 
 
 $$
-J(c^{(1)}, \cdots, c^{(m)}, \mu_1, \cdots, \mu_k) = \frac{1}{m}\sum_{i=1}^{m}\vert\vert x^{(i)}-\mu_c(i)\vert\vert^2
+J(c^{(1)}, \cdots, c^{(m)}, \mu_1, \cdots, \mu_k) = \frac{1}{m}\sum_{i=1}^{m}\Vert\ x^{(i)}-\mu_c(i)\Vert^2
 $$
 
 - $c^{(i)}$ = index of cluster $(1, 2, \cdots, K)$ to which example $x^{(i)}$ is currently assigned
