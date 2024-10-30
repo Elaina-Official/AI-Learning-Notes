@@ -72,15 +72,20 @@ A multiclass classification problem is still a classification problem in that $y
 #### Softmax
 
 We have already know the expression of logistic regression. And **Softmax regression** is similar with logistic regression. For a softmax regression, we have
+
 $$
 z_j = \vec{w_j}\cdot\vec{x} + b_j,\ j = 1, 2, \cdots, n \\
 a_j = \frac{e^{z_j}}{\sum_{k=1}^{n}e^{z_k}} = P(y = j|\vec{x}) \\
 $$
+
 Apparently, 
+
 $$
 \sum_{j=1}^{n}a_j = 1, \ j = 1, 2, \cdots, n \\
 $$
+
 The **loss function** is 
+
 $$
 loss(a_1, a_2, \cdots, a_n, y) =  
 \begin{cases}
@@ -102,12 +107,14 @@ Sometimes we may encounter some problems that require us to classify more than o
 In sometimes, traditional gradient descent algorithm may not perform very well. When every single step of gradient descent is pretty much going in the same direction, it means the learning rate is too small. When the steps of gradient descent is oscillating back and forth, it means the learning rate is too large. 
 
 Therefore, we can use **Adam (Adaptive Moment Estimation) Algorithm** to help gradient descent perform better. This algorithm has a unique learning rate for each feature. So the gradient descent expressions are
+
 $$
 w_1 = w_1 - \alpha_1\frac{\partial}{\partial{w_1}}J(\vec{w}, b) \\
 w_2 = w_2 - \alpha_2\frac{\partial}{\partial{w_2}}J(\vec{w}, b) \\
 \vdots \\
 b = b - \alpha_{n+1}\frac{\partial}{\partial{b}}J(\vec{w}, b) \\
 $$
+
 The solution of Adam algorithm is, if $w_j$ (or $b$) keeps moving in the same direction, then increase $\alpha_j$. And if $w_j$ (or $b$) keeps oscillating, then reduce $\alpha_j$. 
 
 ## Week 2 
@@ -125,36 +132,49 @@ The solution of Adam algorithm is, if $w_j$ (or $b$) keeps moving in the same di
 **Train/Test procedure for linear regression with squared error cost**
 
 Fit parameters by minimizing cost function $J(\vec{w}, b)$
+
 $$
 J(\vec{w},b) = min_{\vec{w}, b}\left[\frac{1}{2m_{train}}\sum_{i=1}^{m_{train}}\left(f_{\vec{w},b}\left(\vec{x}^{(i)}\right) - y^{(i)}\right)^2 + \frac{\lambda}{2m_{train}}\sum_{j=1}^{n}w_j^2\right]
 $$
+
 The test error is 
+
 $$
 J_{test}(\vec{w},b) = \frac{1}{2m_{test}}\left[\sum_{i=1}^{m_{test}}\left(f_{\vec{w},b}\left(\vec{x}_{test}^{(i)}\right) - y_{test}^{(i)}\right)^2\right]
 $$
+
 The training error is 
+
 $$
 J_{train}(\vec{w},b) = \frac{1}{2m_{train}}\left[\sum_{i=1}^{m_{train}}\left(f_{\vec{w},b}\left(\vec{x}_{train}^{(i)}\right) - y_{train}^{(i)}\right)^2\right]
 $$
+
 **Train/Test procedure for classification problem**
 
 Fit parameters by minimizing $J(\vec{w},b)$ to find $\vec{w}, b$
+
 $$
 J(\vec{w},b) = -\frac{1}{m}\sum_{i=1}^{m}\left[y^{(i)}\log\left(f_{\vec{w},b}(\vec{x}^{(i)})\right) + (1-y^{(i)})\log\left(1-f_{\vec{w},b}(\vec{x}^{(i)})\right)\right]
 $$
+
 The test error is 
+
 $$
 J_{test}(\vec{w},b) = -\frac{1}{m_{test}}\sum_{i=1}^{m_{test}}\left[y_{test}^{(i)}\log\left(f_{\vec{w},b}(\vec{x}_{test}^{(i)})\right) + (1-y_{test}^{(i)})\log\left(1-f_{\vec{w},b}(\vec{x}_{test}^{(i)})\right)\right]
 $$
+
 The train error is
+
 $$
 J_{train}(\vec{w},b) = -\frac{1}{m_{train}}\sum_{i=1}^{m_{train}}\left[y_{train}^{(i)}\log\left(f_{\vec{w},b}(\vec{x}_{train}^{(i)})\right) + (1-y_{train}^{(i)})\log\left(1-f_{\vec{w},b}(\vec{x}_{train}^{(i)})\right)\right]
 $$
+
 Fraction of the test set and the fraction of the train set that the algorithm has misclassified. $J_{test}(\vec{w}, b)$ is the fraction of the test set that has been misclassified and $J_{train}(\vec{w},b)$ is the fraction of the train set that has been misclassified. 
 
 #### Model Selection
 
 If we want to decide a model with some features, we can evaluate the model with different amounts of features and then find out the model which perform best. For a whole dataset, we can divide them into three parts: **training set, cross validation, and test set**. And this evaluating method is better than only use training set and test set. **Cross validation**, also called development set or dev set, is an extra dataset that we are going to use to check or trust check the validity or really the accuracy of different models. And the cross validation error is very similar to the training error and test error. For linear regression, the cross validation error is
+
 $$
 J_{cv}(\vec{w},b) = \frac{1}{2m_{cv}}\left[\sum_{i=1}^{m_{cv}}\left(f_{\vec{w},b}\left(\vec{x}_{cv}^{(i)}\right) - y_{cv}^{(i)}\right)^2\right]
 $$
@@ -240,6 +260,7 @@ For a model prediction results, we have four classes.
 - Precision
 
 Precision refers to the proportion of true positive predictions among all the instances that the model predicted as positive. It measures the accuracy of the positive predictions made by the model.
+
 $$
 Precision = \frac{True\ Positives(TP)}{True\ Positives(TP) + False\ Positives(FP)}
 $$
@@ -247,6 +268,7 @@ $$
 - Recall
 
 Recall refers to the proportion of true positive instances that were correctly identified by the model out of all the actual positive instances. It measures the model's ability to capture all the relevant positive cases.
+
 $$
 Recall = \frac{True\ Positives(TP)}{True\ Positives(TP) + False\ Negatives(FN)}
 $$
@@ -256,9 +278,11 @@ $$
 Generally, we will use 0.5 as the **threshold** for the model output value, thereby dividing the prediction results into two categories: true and false. If we want to get a higher precision and a lower recall, then we can use a threshold larger than 0.5. And if we want to get a lower precision and a higher recall, then we can use a threshold smaller than 0.5. 
 
 A useful model usually requires both high precision and high recall. We can use $F_1$ score to measure the performance of the model. 
+
 $$
 F_1\ score = \frac{1}{\frac{1}{2}\left(\frac{1}{P}+\frac{1}{R}\right)} = \frac{2PR}{P+R}
 $$
+
 The larger the value of $F_1$, the precision and recall of the model are approximately balanced.
 
 We can also draw a precision-recall diagram and choose a suitable threshold for the model.
@@ -289,17 +313,21 @@ To build a useful model, we also need to limit the depth of the tree, or it may 
 #### Measuring Purity
 
 Entropy is a measure of the impurity of a set of data. Let 
+
 $$
 p_1 = \text{fraction of examples that are cats} \\
 p_0 = 1 - p_1
 $$
+
 Then the extropy function is
+
 $$
 \begin{aligned}
 H(p_1) &= -p_1\log_2(p_1) - p_0\log_2(p_0) \\
 &= -p_1\log_2(p_1) - (1-p_1)\log_2(1-p_1) \\
 \end{aligned}
 $$
+
 Specially, we define $0\log(0)=0$.
 
 #### Choosing a Split
@@ -313,9 +341,11 @@ For a node in decision tree, we use
 - $w^{right}$ as the proportion of right child node samples in root node samples
 
 And the **information gain** is
+
 $$
 H(p_1^{root}) - \left(w^{left}H(p_1^{left}) + w^{right}H(p_1^{right})\right)
 $$
+
 The greater the information gain, the more suitable it is as a splitting feature in the decision tree.
 
 #### Splitting on a Continuous Variable

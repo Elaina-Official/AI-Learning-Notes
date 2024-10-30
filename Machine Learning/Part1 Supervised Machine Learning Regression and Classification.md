@@ -282,10 +282,10 @@ Therefore, we define **Logistic Loss Function**
 $$
 L(f_{\vec{w}, b}(\vec{x}^{(i)}), y^{(i)}) = 
 \begin{cases}
-\begin{matrix}
+\begin{array}{ll}
 -\log(f_{\vec{w}, b}(\vec{x}^{(i)}))  & \mathrm{if}\space y^{(i)} = 1 \\
 -\log(1-f_{\vec{w}, b}(\vec{x}^{(i)}))  & \mathrm{if}\space y^{(i)} = 0 \\
-\end{matrix}
+\end{array}
 \end{cases}
 $$
 

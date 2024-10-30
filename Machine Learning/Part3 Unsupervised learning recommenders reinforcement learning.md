@@ -179,9 +179,11 @@ So with this loss function, we can take the linear regression like collaborative
 ##### Mean Normalization
 
 If we first carry out mean normalization, the model will perform better. For a new user who has not rate any movie, we can use mean normalization to make the prediction more reasonable. We take all of the values from the users and put them into a two dimensional matrix. And then calculate the average rating for each movie to become a vector $\mu$. For each column in the matrix, it should minus the vector $\mu$ and get a new matrix. Now we can use this new matrix to predict the rating from new users. And the new predict result will be
+
 $$
 w^{(j)}\cdot x^{(i)} + b^{(j)} + \mu_i
 $$
+
 Normalization makes the algorithm tun a bit faster, but even more important, it makes the algorithm give much better, much more reasonable when there are users that rated very few movies or even no movies at all. 
 
 #### Content-based Filtering 
@@ -205,6 +207,7 @@ A good way to develop a content based filtering algorithm is to use deep learnin
 ##### Cost Function
 
 For the neural network above, the cost function is
+
 $$
 J = \sum_{(i,j):r(i.j)=1}(v_u^{(j)}\cdot v_m^{i}-y^{(i,y)})^2+\text{NN regularization term}
 $$
@@ -253,6 +256,7 @@ To better understand Bellman equation, let's suppose
 - $a'$ is the action that we take in state $s'$
 
 Then the Bellman Equation is 
+
 $$
 Q(s,a) = R(s)+\gamma\underset{a'}{\max}Q(s',a')
 $$
@@ -260,9 +264,11 @@ $$
 #### Random Environment
 
 In some applications, when we take an action, the outcome is not always completed reliable. Since the goal of reinforcement learning is to choose a policy $\pi(s)= a$ that will tell us what action a to take in state s so as to maximize the expected return, then the new Bellman equation will be
+
 $$
 Q(s,a) = R(s)+\gamma E[\underset{a'}{\max}Q(s',a')]
 $$
+
 In the equation, $E$ means the average value of $\underset{a'}{\max}Q(s',a')$. 
 
 #### State-Value Function
