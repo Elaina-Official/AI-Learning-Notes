@@ -275,3 +275,15 @@ Then we repeat the following steps:
 - Store $10000$ most recent $(s,a,R(s),s')$ tuples.
 
 After these steps, we can train the neural network by creating training set of $10000$ examples using $x=(s,a)$ and $y=R(s)+\gamma \underset{a'}{\max}Q(s',a')$. 
+
+#### Improved Neural Network Architecture
+
+In a state s, we can use neural network to compute $Q(s,\text{nothing}),Q(s,\text{left}),Q(s,\text{main}),Q(s,\text{right})$, and pick the action $a$ that maximizes $Q(s,a)$. 
+
+#### Greedy Policy
+
+We can use $\epsilon$-greedy policy to improve the algorithm, where $\epsilon\in(0,1)$. 
+
+In some state $s$, with probability $1-\epsilon$, we pick the action $a$ that maximizes $Q(s,a)$, and with probability $\epsilon$, we can pick an action $a$ randomly. 
+We can start $\epsilon$ with a high value, and gradually decrease it. 
+
